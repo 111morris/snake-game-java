@@ -39,6 +39,9 @@ public class GamePanel extends JPanel implements ActionListener {
   public void draw(){
 
   }
+  public void newApple(){
+
+  }
   public void move() {
 
   }
