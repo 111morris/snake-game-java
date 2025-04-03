@@ -63,10 +63,10 @@ public class GamePanel extends JPanel implements ActionListener {
           g.fillRect(x[i], y[i], UNIT_SIZE, UNIT_SIZE);
         }
       }
-      g.setColor(Color.red);
-      g.setFont(new Font("Ink Free", Font.BOLD, 40));
+      g.setColor(Color.gray);
+      g.setFont(new Font("Ink Free", Font.PLAIN, 20));
       FontMetrics metrics = getFontMetrics(g.getFont());
-      g.drawString("umehuma "+applesEaten, (SCREEN_WIDTH - metrics.stringWidth("umehuma "+applesEaten))/2,g.getFont().getSize());
+      g.drawString("umehuma: "+applesEaten +" so far", (SCREEN_WIDTH - metrics.stringWidth("umehuma: "+applesEaten+" so far"))/2,g.getFont().getSize());
     } else {
       gameOver(g);
     }
@@ -130,10 +130,15 @@ public class GamePanel extends JPanel implements ActionListener {
     }
   }
   public void gameOver(Graphics g){
+    g.setColor(Color.RED);
+    g.setFont(new Font("Ink Free", Font.BOLD, 20));
+    FontMetrics metrics2 = getFontMetrics(g.getFont());
+    g.drawString("umehuma: "+applesEaten+" jaribu career ingine sasa", (SCREEN_WIDTH - metrics2.stringWidth("umehuma: "+applesEaten+ " jaribu career ingine sasa"))/2,g.getFont().getSize());
+
     g.setColor(Color.red);
     g.setFont(new Font("Ink Free", Font.BOLD, 75));
-    FontMetrics metrics = getFontMetrics(g.getFont());
-    g.drawString("IZA MORIO", (SCREEN_WIDTH - metrics.stringWidth("IZA MORIO"))/2,SCREEN_HEIGHT/2);
+    FontMetrics metrics1 = getFontMetrics(g.getFont());
+    g.drawString("IZA MORIO", (SCREEN_WIDTH - metrics1.stringWidth("IZA MORIO"))/2,SCREEN_HEIGHT/2);
   }
   @Override
   public void actionPerformed(ActionEvent actionEvent) {
