@@ -18,9 +18,14 @@ A simple Snake game implemented in Java using Swing for the graphical user inter
 ## How to Run
 
 1. **Clone the repository** (if hosted on a version control platform like GitHub) or simply download the files.
+
+   ```bash
+      git clone https://github.com/111morris/snake-game-java.git
+      ```
 2. **Compile** the Java files:
     - If using an IDE, just open the project and run it.
     - If using the terminal, run the following commands:
+
       ```bash
       cd snake-game-java/src/
       ```
