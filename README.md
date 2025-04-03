@@ -22,6 +22,9 @@ A simple Snake game implemented in Java using Swing for the graphical user inter
     - If using an IDE, just open the project and run it.
     - If using the terminal, run the following commands:
       ```bash
+      cd snake-game-java/src/
+      ```
+      ```bash
       javac SnakeGame.java
       java SnakeGame
       ```
