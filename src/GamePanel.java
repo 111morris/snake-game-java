@@ -16,11 +16,13 @@ public class GamePanel extends JPanel implements ActionListener {
   final int x[] = new int[GAME_UNITS];
   final int y[] = new int[GAME_UNITS];
   int bodyParts = 6;
+  int applesEaten;
   int appleX;
   int appleY;
   char direction = 'R';
   boolean running = false;
   Random random;
+  Timer timer;
 
   GamePanel(){
     random = new Random();
@@ -34,7 +36,7 @@ public class GamePanel extends JPanel implements ActionListener {
   public void startGame(){
     newApple();
     running = true;
-    Timer timer = new Timer(DELAY, this);
+    timer = new Timer(DELAY, this);
     timer.start();
   }
   public void paintComponent(Graphics g){
@@ -62,12 +64,11 @@ public class GamePanel extends JPanel implements ActionListener {
     }
   }
   public void newApple(){
-    Random random = new Random();
-    appleX = random.nextInt((int) (SCREEN_WIDTH/UNIT_SIZE))*UNIT_SIZE;
-    appleY = random.nextInt((int) (SCREEN_HEIGHT/UNIT_SIZE))*UNIT_SIZE;
+    appleX = random.nextInt((int)(SCREEN_WIDTH/UNIT_SIZE))*UNIT_SIZE;
+    appleY = random.nextInt((int)(SCREEN_HEIGHT/UNIT_SIZE))*UNIT_SIZE;
   }
   public void move() {
-    for(int i = bodyParts; i<0;i--){
+    for(int i = bodyParts; i>0;i--){
       x[i] = x[i-1];
       y[i] = y[i-1];
     }
@@ -90,7 +91,31 @@ public class GamePanel extends JPanel implements ActionListener {
 
   }
   public void checkCollisions(){
-
+    //it will check if head collides with body
+    for(int i = bodyParts;i>0;i--){
+      if((x[0] == x[i]) && (y[0] == y[i])){
+        running = false;
+      }
+    }
+    // it will check if head touches left boreder
+    if(x[0] <0){
+      running = false;
+    }
+    //check if head touches right border
+    if(x[0] > SCREEN_WIDTH) {
+      running = false;
+    }
+    //check if head touches top border
+    if(y[0] <0){
+      running = false;
+    }
+    //check if head touches bottom border
+    if(y[0] > SCREEN_HEIGHT) {
+      running = false;
+    }
+    if(!running) {
+      timer.stop();
+    }
   }
   public void gameOver(ActionEvent e){
 
