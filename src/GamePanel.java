@@ -19,9 +19,11 @@ public class GamePanel extends JPanel implements ActionListener {
   int appleX;
   int appleY;
   char direction = 'R';
+  boolean running = false;
+  Random random;
 
   GamePanel(){
-    Random random = new Random();
+    random = new Random();
     this.setPreferredSize(new Dimension(SCREEN_WIDTH, SCREEN_HEIGHT));
     this.setBackground(Color.black);
     this.setFocusable(true);
@@ -31,7 +33,7 @@ public class GamePanel extends JPanel implements ActionListener {
   }
   public void startGame(){
     newApple();
-    boolean running = true;
+    running = true;
     Timer timer = new Timer(DELAY, this);
     timer.start();
   }
@@ -46,6 +48,18 @@ public class GamePanel extends JPanel implements ActionListener {
     }
     g.setColor(Color.red);
     g.fillOval(appleX, appleY, UNIT_SIZE, UNIT_SIZE);
+
+    // this will iterate though every body
+    for(int i =0; i<bodyParts; i++){
+      if(i==0) {
+        g.setColor(Color.green);
+        g.fillRect(x[i], y[i], UNIT_SIZE, UNIT_SIZE);
+
+      } else {
+        g.setColor(new Color(45, 180, 0));
+        g.fillRect(x[i], y[i], UNIT_SIZE, UNIT_SIZE);
+      }
+    }
   }
   public void newApple(){
     Random random = new Random();
@@ -72,7 +86,7 @@ public class GamePanel extends JPanel implements ActionListener {
         break;
     }
   }
-  public void checApple(){
+  public void checkApple(){
 
   }
   public void checkCollisions(){
@@ -83,7 +97,12 @@ public class GamePanel extends JPanel implements ActionListener {
   }
   @Override
   public void actionPerformed(ActionEvent actionEvent) {
-
+    if(running) {
+      move();
+      checkApple();
+      checkCollisions();
+    }
+    repaint();
   }
 
   public class MyKeyAdapter extends KeyAdapter{
